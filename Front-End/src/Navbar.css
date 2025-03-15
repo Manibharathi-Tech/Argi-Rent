@@ -1,0 +1,152 @@
+/* General Navbar Styles */
+.bodynav {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    
+}
+
+.navbar {
+    background-color: #a7deeb;
+    color: white;
+    padding: 10px 20px;
+    width: 100%;
+   
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    height: 80px;
+}
+
+/* Logo */
+.logo img {
+    height: 40px;
+    margin-left: -120px;
+}
+
+/* Navigation Links */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+}
+
+.nav-links li {
+    display: inline;
+    font-size: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #4a5568;
+}
+
+/* Icons */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.notificationbtn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+}
+
+
+
+
+/* Profile Menu */
+.profile-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dropdown {
+    display: none;
+    position: static;
+    right: 0;
+    background: white;
+    width: 200px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.dropdown a {
+    display: block;
+    color: #333;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.dropdown a:hover {
+    background: #e0e0e0;
+}
+
+.profile-menu:hover .dropdown {
+    display: flex;
+}
+
+/* Mobile Menu */
+.hamburger {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #2d3748;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+.mobile-menu li {
+    padding: 10px;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .mobile-menu.active {
+        display: flex;
+    }
+}

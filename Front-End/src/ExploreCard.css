@@ -1,0 +1,56 @@
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: 0.3s;
+    height: 700px;
+    border: 2px solid black;
+    width: 350px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    width: 95%;
+    border-radius: 10px;
+    height: 275px;
+}
+
+.card h3 {
+    color: #2d6a4f;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.days {
+    width: 50px;
+    text-align: center;
+    padding: 5px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.order-btn {
+    margin-top: -20px;
+    padding: 10px;
+    background: #ff8c00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.order-btn:hover {
+    background: #e07b00;
+}

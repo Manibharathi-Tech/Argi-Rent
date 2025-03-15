@@ -1,0 +1,199 @@
+/* General Styles */
+.bodyLO {
+   
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+.containerLO {
+    display: flex;
+    max-width: 1550px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    height: 570px;
+}
+
+/* Left Section */
+.left {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left h1 {
+    margin: 0 0 10px 0;
+    font-size: 32px;
+}
+
+.left p {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.left li {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.left li svg {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #141b1d; /* Gold color for icons */
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.primary {
+    background: #1565C0;
+    color: white;
+}
+
+.primary:hover {
+    background: #F57C00;
+}
+
+.secondary {
+    background: #1976D2;
+    color: white;
+    margin-left: 10px;
+}
+
+.secondary:hover {
+    background: #F57C00;
+}
+
+/* Right Section */
+.right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right img {
+    width: 100%;
+    /* max-width: 450px; */
+    height: 550px;
+    /* padding: 50px; */
+    border-radius: 10px;
+    margin-left: -10px;
+    margin-top: -8px;
+}
+
+
+/* Feature Section */
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 50px 20px;
+}
+
+.feature-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 290px;
+    transition: transform 0.3s ease-in-out;
+    border: 2px solid black;
+}
+
+.feature-box:hover {
+    transform: scale(1.1);
+    background: #e0f7fa;
+}
+
+.h3LO {
+    color: #27ae60;
+    font-size: 25px;
+}
+
+.pOW {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #555;
+}
+
+  
+  /* ------------ */
+
+  section{
+    height: 100vh;
+    background-image: url(https://c0.wallpaperflare.com/preview/919/625/239/tractor-john-deere-sunset.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-attachment: fixed;
+
+}
+
+section > h1{
+    text-transform: uppercase;
+    color: white;
+    font-size: 35px;
+    text-shadow: 2px 2px 3px black;
+}
+
+.info-paragraph{
+    margin-left: 180px;
+    margin-top: 100px;
+    justify-content: center;
+    text-align: center;
+    width: 900px;
+    margin-bottom: 100px;
+}
+
+.info-paragraph::first-letter {
+    font-size: 7rem;
+    font-weight: bold;
+    color: #333; 
+    float: left;
+    margin-right: 10px;
+    line-height: 1;
+}
+
+#section3{
+    height: 100vh;
+    background-image: url(https://c1.wallpaperflare.com/preview/765/821/243/tractor-green-john-deere-spring.jpg);
+   
+}
+
+
+
+section > p{
+    color: white;
+    /* font-weight: bold;  */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 35px;
+    text-shadow: 2px 2px 3px black;
+}

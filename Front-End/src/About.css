@@ -1,0 +1,119 @@
+/* styles.css */
+.bodyAbout {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.about-section {
+    background: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect on About Container */
+.about-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.about-image {
+    overflow: hidden;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    height: 290px;
+    border-radius: 10px 0 0 10px;
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Image Zoom Hover Effect */
+.about-image img:hover {
+    transform: scale(1.05);
+}
+
+.about-content {
+    padding: 30px;
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect on Text */
+.about-content:hover {
+    transform: translateY(-5px);
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    color: #2d6a4f;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect on Heading */
+.about-content h2:hover {
+    color: #1b4332;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+/* Paragraph Hover Effect */
+.about-content p:hover {
+    color: #333;
+}
+
+/* Learn More Button */
+.learn-more {
+    display: inline-block;
+    margin-top: -15px;
+    padding: 12px 24px;
+    background: #2d6a4f;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Hover Effect */
+.learn-more:hover {
+    background: #1b4332;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+    }
+    .about-image img {
+        border-radius: 10px 10px 0 0;
+    }
+    .about-content {
+        text-align: center;
+    }
+}

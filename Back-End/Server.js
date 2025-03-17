@@ -19,7 +19,7 @@ const app = express();
 //! MiddleWare
 app.use(cors());  // cross origin
 app.use(express.json({ limit: "50mb" })) //Converts JSON into JavaScript objects.
-app.use(express.urlencoded({ extended: true, limit: "50mb" })); //for from data
+app.use(express.urlencoded({ extended: true, limit: "50mb" })); 
 
 
 
@@ -31,13 +31,17 @@ async function connectdb() {
         await client.connect();
 
         console.log("mongodb connected");
-        db = client.db(dbName);
+
+        // db = client.db(dbName);
+
+        return client ;
+
     } catch (err) {
         console.error("mongodb not Connection ", err);
     }
 }
 
-connectdb();
+// connectdb();
 
 
 
@@ -45,6 +49,9 @@ connectdb();
 
 //!login API
 app.post("/login", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
 
     try {
 
@@ -80,6 +87,8 @@ app.post("/login", async (req, res) => {
     } catch (error) {
         console.error("Login Error");
         res.status(404).json({ error: "server problem" });
+    }finally {
+        await client.close();   // close the connection of db
     }
 
 });
@@ -88,6 +97,9 @@ app.post("/login", async (req, res) => {
 
 //!SignUp API
 app.post("/Signup", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
 
     try {
 
@@ -117,6 +129,8 @@ app.post("/Signup", async (req, res) => {
     } catch (error) {
         console.error("Signup Error");
         res.status(404).json({ error: "server problem" });
+    }finally {
+        await client.close();  // Closing the connection
     }
 
 });
@@ -126,6 +140,10 @@ app.post("/Signup", async (req, res) => {
 //!  EquipOwner API - Add Equipment Listing with Duplicate Check
 
 app.post("/ownerequip", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
+
     try {
 
         if (!db) return res.status(500).json({ error: "Database notconnected" });
@@ -144,7 +162,7 @@ app.post("/ownerequip", async (req, res) => {
             return res.status(400).json({ error: "Invalid email format" });
         }
 
-        const collection = db.collection("equipment"); // Your collection name
+        const collection = db.collection("equipment"); 
         const existingEquipment = await collection.findOne({ EquipName, EquipEmail });
 
         if (existingEquipment) {
@@ -165,6 +183,8 @@ app.post("/ownerequip", async (req, res) => {
         console.error(" Adding Equipment Error");
 
         res.status(500).json({ error: "Server error." });
+    }finally {
+        await client.close();  //connection close
     }
 });
 
@@ -174,6 +194,9 @@ app.post("/ownerequip", async (req, res) => {
 //!  GET Wishlist API (with Pagination)
 
 app.get("/wishlist/:ownerEmail", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
 
     try {
 
@@ -209,6 +232,8 @@ app.get("/wishlist/:ownerEmail", async (req, res) => {
         console.error("Error Fetching equipment:", error);
 
         res.status(500).json({ error: "Server error" });
+    }finally {
+        await client.close();  
     }
 });
 
@@ -217,6 +242,9 @@ app.get("/wishlist/:ownerEmail", async (req, res) => {
 //! getting equipment from equipment DB
 
 app.get("/cardExplore", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
 
     try {
 
@@ -234,6 +262,8 @@ app.get("/cardExplore", async (req, res) => {
         console.error("Error Fetching Equipment:", error.message);
 
         res.status(500).json({ error: "Server error" });
+    }finally {
+        await client.close(); 
     }
 });
 
@@ -242,6 +272,9 @@ app.get("/cardExplore", async (req, res) => {
 //! Add to Placed Orders (Check for Duplicates)
 
 app.post("/placedOrder", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
 
     try {
 
@@ -272,6 +305,8 @@ app.post("/placedOrder", async (req, res) => {
     } catch (error) {
       console.error("Error Adding to Placed Orders:", error.message);
       res.status(500).json({ error: "Server error" });
+    }finally {
+        await client.close();  
     }
   });
   
@@ -280,6 +315,10 @@ app.post("/placedOrder", async (req, res) => {
 //! get all the ordered data 
 
   app.get("/getdataproduct", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
+
     try {
         if (!db) {
             return res.status(500).json({ error: "Database not connected" });
@@ -295,25 +334,63 @@ app.post("/placedOrder", async (req, res) => {
     } catch (error) {
         console.error("Error fetching products:", error);
         res.status(500).json({ error: "Server error" });
+    }finally {
+        await client.close(); 
     }
 });
 
 //!=========================================================================
 
 app.delete("/removedata/:id", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
+
     try {
         if (!db) {
             return res.status(500).json({ error: "Database not connected" });
         }
 
         const { id } = req.params;
+        
+        const collection = db.collection("equipment"); // collection name
+
+        await collection.deleteOne({ _id : new ObjectId(id) } ); 
+
+        res.status(200).json({ message: "Item removed from Uploaded Product" });
+
+    } catch (error) {
+        res.status(500).json({ error: "Failed to remove item" });
+    }finally {
+        await client.close();  
+    }
+    
+});
+
+//!=========================================================================
+
+app.delete("/whishlistProduct/:id", async (req, res) => {
+
+    const client = await connectdb();
+    const db = client.db(dbName);
+
+    try {
+        if (!db) {
+            return res.status(500).json({ error: "Database not connected" });
+        }
+
+        const { id } = req.params;
+        
         const collection = db.collection("orderEquipment"); // collection name
 
         await collection.deleteOne({ _id : id } ); 
 
         res.status(200).json({ message: "Item removed from wishlist" });
+
     } catch (error) {
         res.status(500).json({ error: "Failed to remove item" });
+    }finally {
+        await client.close();  
     }
     
 });
@@ -324,7 +401,7 @@ const verifyToken = (req, res, next) => {
     const token = req.header("Authorization"); // Read token from request headers
 
     if (!token) {
-        return res.status(401).json({ error: "Access Denied. No token provided." });
+        return res.status(401).json({ error: " No token provided." });
     }
 
     try {
@@ -335,18 +412,13 @@ const verifyToken = (req, res, next) => {
         next(); // Proceed to the next middleware or route
 
     } catch (error) {
-        res.status(403).json({ error: "Invalid or expired token" });
+        res.status(403).json({ error: "Invalid token" });
     }
 };
 
 
 
 //!-----------------------------
-
-
-
-
-
 
 
 

@@ -67,8 +67,8 @@ function RentEquipOwner() {
 
     // Remove data from wishlist
     const removeFromWishlist = (id) => {
-        fetch(`http://localhost:2000/wishlist/${id}`, {
-            method: "DELETE",
+        fetch(`http://localhost:2000/removedata/${id}`, {
+            method: "DELETE"
         })
             .then((res) => res.json())
             .then(() => {

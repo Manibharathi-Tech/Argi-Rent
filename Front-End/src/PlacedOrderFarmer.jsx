@@ -20,7 +20,7 @@ function PlacedOrderFarmer() {
   //! Remove data from orderEquipment
 
   const removeFromWishlist = (id) => {
-    fetch(`http://localhost:2000/removedata/${id}`, {
+    fetch(`http://localhost:2000/whishlistProduct/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
